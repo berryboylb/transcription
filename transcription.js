@@ -1,7 +1,7 @@
 const { openaiApiKey, DEEP_GRAM } = require("./constants");
 const { Deepgram } = require("@deepgram/sdk");
 
-const deepgram = new Deepgram(DEEP_GRAM)
+const deepgram = new Deepgram(DEEP_GRAM);
 const transcribe = async (file) => {
   const ress = await deepgram.transcription.preRecorded(
     { url: file },
@@ -11,6 +11,5 @@ const transcribe = async (file) => {
 };
 
 module.exports = {
-  deepgram,
   transcribe,
 };

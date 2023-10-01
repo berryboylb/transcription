@@ -8,7 +8,7 @@ const { v4: uuid } = require("uuid");
 const path = require("path");
 const errorHandler = require("./errorHandler");
 const notFound = require("./notFound");
-
+const { load } = require("./cloundinary");
 app.use(express.json({ extended: false }));
 app.timeout = 300000;
 dotenv.config();
@@ -106,8 +106,6 @@ const videoFolder = path.join(__dirname, "uploads/videos/");
 app.get("/videos/:fileName", (req, res) => {
   const fileName = req.params.fileName;
   const filePath = path.join(videoFolder, fileName);
-
-  // Check if the file exists
   fs.access(filePath, fs.constants.F_OK, (err) => {
     if (err) {
       res.status(404).send("Video not found");
